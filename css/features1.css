@@ -1,0 +1,195 @@
+ body {
+    margin: 30px;
+    font-family: "Georgia", serif;
+    line-height: 1.8em;
+    color: #333;
+}
+ 
+/* Give headings their own font */
+ 
+h1, h2, h3, h4 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    text-align: center;
+}
+li {
+    width:120px; 
+    height:120px; 
+    margin:3px;
+    cursor:pointer;
+    text-align:center;
+    list-style: none;
+}
+
+#wrapper {
+    width:960px;
+    margin:0px auto;
+}
+
+/* Main content area */
+ 
+#fruitSpellCheck {
+    margin: 10px 70px;
+    text-align: center;
+}
+
+.listcontainer {
+    width: 800px;
+    height: 120px;
+}
+
+#selectedFruit {
+    margin: 30px auto 0 auto;
+    opacity: 1;
+    width: 80px;
+    height: 90px;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 100%;
+    box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    background-position:center;
+ 
+}
+.fruits {
+    width: 120px;
+    height: 120px;
+    margin: 3px;
+    float: left;
+    cursor: pointer;
+
+}
+#selectedFruit.apple {
+    background-image: url("../images/apple.jpg");
+}
+#selectedFruit.orange {
+    background-image: url("../images/orange.jpg");
+}
+#selectedFruit.avocado {
+    background-image: url("../images/avocado.jpg");
+}
+#selectedFruit.lemon {
+    background-image: url("../images/lemon.jpg");
+}
+#selectedFruit.strawberry {
+    background-image: url("../images/strawberry.jpg");
+}
+#selectedFruit.grapes {
+    background-image: url("../images/grapes.jpg");
+}
+#selectedFruit.banana {
+    background-image: url("../images/banana.jpg");
+}
+#selectedFruit.blueberry {
+    background-image: url("../images/blueberry.jpg");
+}
+#selectedFruit.raspberry {
+    background-image: url("../images/raspberry.jpg");
+}
+#selectedFruit.pineapple {
+    background-image: url("../images/pineapple.jpg");
+}
+#selectedFruit.watermelon {
+    background-image: url("../images/watermelon.jpg");
+}
+/* Slots for final letters positions */
+ 
+#letterSlots {
+    margin: 50px auto 0 auto;
+    background: #ddf;
+    opacity: 1;
+}
+ 
+/* The initial pile of shuffled letters */
+ 
+#letterPile {
+    margin: 50px auto 0 auto;
+    background: #ffd;
+}
+ 
+#letterSlots, #letterPile {
+    width: 910px;
+    height: 130px;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+}
+ 
+/* Rules for div's when they occur within #letterSlots/#letterPile
+** See: CSS descendant selectors: 
+** http://www.w3.org/TR/CSS2/selector.html#descendant-selectors; 
+*/
+
+#letterSlots div, #letterPile div {
+    float: left;
+    width: 50px;
+    height: 58px;
+    padding: 10px;
+    padding-top: 35px;
+    padding-bottom: 10px;
+    border: 2px solid #333;
+    border-radius: 100%;
+    margin: 0 0 0 10px;
+    background: #fff;
+    text-align: center;
+}
+
+#letterSlots div.hovered {
+  background: green;
+}
+ 
+#letterSlots div {
+  border-style: dashed;
+}
+ 
+#letterPile div {
+  background: #666;
+  color: #fff;
+  font-size: 50px;
+  text-shadow: 0 0 3px #000;
+  cursor: pointer;
+}
+ 
+#letterPile div.ui-draggable-dragging {
+  box-shadow: 0 0 .8em rgba(10, 10, 10, .8);
+  background-color: lightblue;
+}
+ 
+/* Individually colored letters - could not think of a smart way to generate this in js*/
+#letterA.correct { background: #C9FFE5; }
+#letterB.correct { background: #F4C2C2; }
+#letterC.correct { background: #0047AB; }
+#letterD.correct { background: #FF7F50; }
+#letterE.correct { background: #986960; }
+#letterF.correct { background: #4A5D23; }
+#letterG.correct { background: #FFA812; }
+#letterH.correct { background: green; }
+#letterI.correct { background: green; }
+#letterJ.correct { background: red; }
+
+#letterK.correct { background: purple; }
+#letterL.correct { background: violet; }
+#letterM.correct { background: magenta; }
+#letterN.correct { background: lime; }
+#letterO.correct { background: orange; }
+
+#letterP.correct { background: red; }
+#letterQ.correct { background: brown; }
+
+
+#letterR.correct { background: purple; }
+#letterS.correct { background: violet; }
+#letterT.correct { background: magenta; }
+#letterU.correct { background: lime; }
+#letterV.correct { background: violet; }
+
+#letterW.correct { background: #4A5D20; }
+#letterX.correct { background: yellow; }
+#letterY.correct { background: brown; }
+#letterZ.correct { background: white; }
+
+
+.ui-state-disabled {
+    opacity: 1;
+    filter: Alpha(Opacity=100);
+    background-image: none;
+}
