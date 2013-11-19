@@ -7,7 +7,6 @@ function genInit(fruit) {
 
     correctLetters= 0;
     wordLength = fruit.length;
-    console.log(fruit);
     
     $('#selectedFruit').removeClass(lastClass);
 
