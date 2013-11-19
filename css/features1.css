@@ -6,10 +6,14 @@
 }
  
 /* Give headings their own font */
- 
+p.hidden {visibility: hidden;}
 h1, h2, h3, h4 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     text-align: center;
+}
+h2.tagged {
+    position: relative;
+    top: 50px;
 }
 li {
     width:120px; 
@@ -97,26 +101,29 @@ li {
     background: #ddf;
     opacity: 1;
 }
- 
+.hidden {
+    visibility: hidden;
+} 
 /* The initial pile of shuffled letters */
  
 #letterPile {
     margin: 50px auto 0 auto;
     background: #ffd;
 }
- 
+
 #letterSlots, #letterPile {
     width: 910px;
     height: 130px;
     padding: 20px;
-    border: 2px solid #333;
+    border: 2px solid black;
     border-radius: 10px;
     box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+
 }
  
-/* Rules for div's when they occur within #letterSlots/#letterPile
-** See: CSS descendant selectors: 
-** http://www.w3.org/TR/CSS2/selector.html#descendant-selectors; 
+/* rc: Rules for div's within #letterSlots/#letterPile
+** rc: See: CSS descendant selectors: 
+** rc: http://www.w3.org/TR/CSS2/selector.html#descendant-selectors; 
 */
 
 #letterSlots div, #letterPile div {
@@ -128,7 +135,7 @@ li {
     padding-bottom: 10px;
     border: 2px solid #333;
     border-radius: 100%;
-    margin: 0 0 0 10px;
+    margin: 10px 0 0 10px;
     background: #fff;
     text-align: center;
 }
@@ -154,7 +161,14 @@ li {
   background-color: lightblue;
 }
  
-/* Individually colored letters - could not think of a smart way to generate this in js*/
+
+.ui-state-disabled {
+    opacity: 1;
+    filter: Alpha(Opacity=100);
+    background-image: none;
+}
+
+/* rc: Individually colored letters - could not think of a smart way to generate this in js*/
 #letterA.correct { background: #C9FFE5; }
 #letterB.correct { background: #F4C2C2; }
 #letterC.correct { background: #0047AB; }
@@ -187,9 +201,3 @@ li {
 #letterY.correct { background: brown; }
 #letterZ.correct { background: white; }
 
-
-.ui-state-disabled {
-    opacity: 1;
-    filter: Alpha(Opacity=100);
-    background-image: none;
-}

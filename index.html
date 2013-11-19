@@ -9,7 +9,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="js/jquery.hoverscroll.js"></script>
-    <script src="jquery.ui.touch-punch.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
 </head>
 <body>
 <div id='wrapper'> 
@@ -29,12 +29,17 @@
             <li><img class='fruits' id='lemon' src="images/lemon.jpg" /></li>
         </ul>
     </div>
-    <div id='selectedFruit'> </div>
-    <div id='alphatetList'>   
-        <div id="letterPile"> </div>
+    <div id='selectedFruit' class="hidden"> </div>
+    
+    <div id='alphabetList' class="hidden">   
+        <h2 class='tagged'> List from Alphabet to drag & drop </h2>
+        <div id="letterPile" > </div>
+        
     </div>
-    <div id='solution'>
-        <div id="letterSlots"> </div>
+
+    <div id='solution' class="hidden">
+        <h2 class='tagged'> Only Correct Spelling will Stick below </h2>
+        <div id="letterSlots" > </div>
     </div>
     <script type="text/javascript" src="js/gendragdrop.js"></script>
 </body>

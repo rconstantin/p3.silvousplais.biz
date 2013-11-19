@@ -8,18 +8,29 @@ function genInit(fruit) {
     correctLetters= 0;
     wordLength = fruit.length;
     console.log(fruit);
-    if (lastClass != '' && lastClass != fruit) {
-        $('#selectedFruit').removeClass(lastClass);
+    
+    $('#selectedFruit').removeClass(lastClass);
+
+    if (fruit != '') {
+        $("#selectedFruit").removeClass('hidden');
+        $("#solution").removeClass('hidden');
+        $('#alphabetList').removeClass('hidden');
+    } else {
+        $("#selectedFruit").addClass('hidden');
+        $("#solution").addClass('hidden');
+        $('#alphabetList').addClass('hidden');
+        return;
     }
+
     $('#selectedFruit').addClass(fruit);
     lastClass = fruit;
     $('#letterPile').html( '' );
     $('#letterSlots').html( '' );
- 
+    
     var letters = fruit.split('');
     var dropins = fruit.split('');
     letters.sort( function() { return Math.random() - .5 });
-    
+ 
     for ( var i=0; i<fruit.length; i++ ) {
         letters[i] = letters[i].toUpperCase();
         dropins[i] = dropins[i].toUpperCase();
@@ -63,7 +74,7 @@ function handleLetterDrop( event, ui ) {
         alert("Good Job!! Click Ok to refresh screen.");
         $('#selectedFruit').removeClass(lastClass);
         genInit('');
-        
+ 
     }
 
 }
