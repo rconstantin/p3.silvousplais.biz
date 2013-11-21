@@ -45,7 +45,9 @@ li {
     margin: 10px 70px;
     text-align: center;
     color:orange;
-    background-position:center;
+    position: absolute;
+    top:0px;
+    left:60px;
 }
 .listcontainer {
     width: 800px;

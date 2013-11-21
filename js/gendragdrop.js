@@ -104,12 +104,12 @@ function handleLetterDrop( event, ui ) {
         $('#output').append('Good Job: You won! :)<br>');   
 
         
-        $('#output').append('Starting a new game in 10 seconds...<br>');   
+        $('#output').append('Starting a new game in 5 seconds...<br>');   
         
         // Let them see the results for 3 seconds, then just refresh this page to start a new game
         setTimeout(function(){
             location.reload();
-        },10000);
+        },5000);
  
     }
 
