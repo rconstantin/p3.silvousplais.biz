@@ -39,7 +39,7 @@ function genInit(fruit) {
 
     letters.sort( function() { return Math.random() - .5 });
     var slotWidth = ((fruit.length*90)-30)+'px';
-    var pileWidth = Math.min((letters.length * 90-30),910)+'px';
+    var pileWidth = Math.min((letters.length * 90-30),950)+'px';
     $('#letterSlots').css('width',slotWidth);
     $('#letterPile').css('width',pileWidth);
     if (letters.length > 11) {
