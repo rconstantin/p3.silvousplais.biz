@@ -3,13 +3,18 @@
     font-family: "Georgia", serif;
     line-height: 1.8em;
     color: #333;
+    background:black;
 }
  
 /* Give headings their own font */
 p.hidden {visibility: hidden;}
 h1, h2, h3, h4 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: red;
     text-align: center;
+}
+p1 {
+    color:red;
 }
 h2.tagged {
     position: relative;
@@ -27,6 +32,7 @@ li {
 #wrapper {
     width:960px;
     margin:0px auto;
+    position: relative;
 }
 
 /* Main content area */
@@ -35,7 +41,12 @@ li {
     margin: 10px 70px;
     text-align: center;
 }
-
+#output {
+    margin: 10px 70px;
+    text-align: center;
+    color:orange;
+    background-position:center;
+}
 .listcontainer {
     width: 800px;
     height: 120px;
@@ -53,12 +64,20 @@ li {
     background-position:center;
  
 }
+#degreeOfDifficulty {
+    width: 100px;
+    height: 30px;
+    top:0px;
+    left:960px;
+    position: absolute;
+}
 .fruits {
     width: 120px;
-    height: 120px;
-    margin: 3px;
+    height: 110px;
+    margin: 2px;
     float: left;
     cursor: pointer;
+    border: 2px solid #333;;
 
 }
 #selectedFruit.apple {
@@ -98,7 +117,7 @@ li {
  
 #letterSlots {
     margin: 50px auto 0 auto;
-    background: #ddf;
+    background: rgba(237, 255, 221, 0.9);
     opacity: 1;
 }
 .hidden {
@@ -108,7 +127,7 @@ li {
  
 #letterPile {
     margin: 50px auto 0 auto;
-    background: #ffd;
+    background: #E7E7DA;
 }
 
 #letterSlots, #letterPile {

@@ -13,6 +13,13 @@
 </head>
 <body>
 <div id='wrapper'> 
+    <div id="degreeOfDifficulty"> 
+        <p1>Select Degree of Difficulty </p1> 
+        <select id='difficulty'>
+            <option value='1'>Easy</option>
+            <option value='2'>Challenging</option>
+        </select>    
+    </div>    
     <div id="fruitSpellCheck">
             <h2>click a fruit to Spell</h2>
         <ul id="my-list">
@@ -32,15 +39,16 @@
     <div id='selectedFruit' class="hidden"> </div>
     
     <div id='alphabetList' class="hidden">   
-        <h2 class='tagged'> List from Alphabet to drag & drop </h2>
+        <h2 class='tagged'> Pick correct letters to drag & drop for correct spelling</h2>
         <div id="letterPile" > </div>
         
     </div>
 
     <div id='solution' class="hidden">
-        <h2 class='tagged'> Only Correct Spelling will Stick below </h2>
+        <h2 class='tagged'> Only Correct letter location will Stick </h2>
         <div id="letterSlots" > </div>
     </div>
+    <div id='output'></div>
     <script type="text/javascript" src="js/gendragdrop.js"></script>
 </body>
 </html>
