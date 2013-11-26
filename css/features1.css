@@ -20,6 +20,7 @@ h2.tagged {
     position: relative;
     top: 50px;
 }
+
 li {
     width:120px; 
     height:120px; 
@@ -46,8 +47,25 @@ li {
     text-align: center;
     color:orange;
     position: absolute;
-    top:0px;
-    left:60px;
+    top:425px;
+    left:-330px;
+}
+#gameRules {
+    margin: 10px 70px;
+    text-align: left;
+    color:red;
+    position: absolute;
+    top:525px;
+    left:-330px;
+}
+#solution_title {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    position: relative;
+    color:red;
+    text-align: center;
+    top: 50px;
 }
 .listcontainer {
     width: 800px;
@@ -162,26 +180,26 @@ li {
 }
 
 #letterSlots div.hovered {
-  background: green;
+    background: green;
 }
  
 #letterSlots div {
-  border-style: dashed;
+    border-style: dashed;
 }
  
 #letterPile div {
-  background: #666;
-  color: #fff;
-  font-size: 50px;
-  text-shadow: 0 0 3px #000;
-  cursor: pointer;
+    background: #666;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 0 0 3px #000;
+    cursor: pointer;
+/*  position:absolute; */ 
 }
- 
+
 #letterPile div.ui-draggable-dragging {
   box-shadow: 0 0 .8em rgba(10, 10, 10, .8);
   background-color: lightblue;
 }
- 
 
 .ui-state-disabled {
     opacity: 1;
@@ -190,35 +208,35 @@ li {
 }
 
 /* rc: Individually colored letters - could not think of a smart way to generate this in js*/
-#letterA.correct { background: #C9FFE5; }
-#letterB.correct { background: #F4C2C2; }
-#letterC.correct { background: #0047AB; }
-#letterD.correct { background: #FF7F50; }
-#letterE.correct { background: #986960; }
-#letterF.correct { background: #4A5D23; }
-#letterG.correct { background: #FFA812; }
-#letterH.correct { background: green; }
-#letterI.correct { background: green; }
-#letterJ.correct { background: red; }
+#A.correct { background: #C9FFE5; }
+#B.correct { background: #F4C2C2; }
+#C.correct { background: #0047AB; }
+#D.correct { background: #FF7F50; }
+#E.correct { background: #986960; }
+#F.correct { background: #4A5D23; }
+#G.correct { background: #FFA812; }
+#H.correct { background: green; }
+#I.correct { background: blue; }
+#J.correct { background: red; }
 
-#letterK.correct { background: purple; }
-#letterL.correct { background: violet; }
-#letterM.correct { background: magenta; }
-#letterN.correct { background: lime; }
-#letterO.correct { background: orange; }
+#K.correct { background: purple; }
+#L.correct { background: violet; }
+#M.correct { background: magenta; }
+#N.correct { background: lime; }
+#O.correct { background: orange; }
 
-#letterP.correct { background: red; }
-#letterQ.correct { background: brown; }
+#P.correct { background: red; }
+#Q.correct { background: brown; }
 
 
-#letterR.correct { background: purple; }
-#letterS.correct { background: violet; }
-#letterT.correct { background: magenta; }
-#letterU.correct { background: lime; }
-#letterV.correct { background: violet; }
+#R.correct { background: purple; }
+#S.correct { background: violet; }
+#T.correct { background: magenta; }
+#U.correct { background: lime; }
+#V.correct { background: violet; }
 
-#letterW.correct { background: #4A5D20; }
-#letterX.correct { background: yellow; }
-#letterY.correct { background: brown; }
-#letterZ.correct { background: white; }
+#W.correct { background: #4A5D20; }
+#X.correct { background: yellow; }
+#Y.correct { background: brown; }
+#Z.correct { background: white; }
 

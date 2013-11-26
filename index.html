@@ -16,8 +16,10 @@
     <div id="degreeOfDifficulty"> 
         <p1>Select Degree of Difficulty </p1> 
         <select id='difficulty'>
-            <option value='1'>Easy</option>
-            <option value='2'>Challenging</option>
+            <option value='1'>Beginner</option>
+            <option value='2'>Moderate</option>
+            <option value='3'>Challenging</option>
+            <option value='4'>Advanced</option>
         </select>    
     </div>    
     <div id="fruitSpellCheck">
@@ -39,16 +41,18 @@
     <div id='selectedFruit' class="hidden"> </div>
     
     <div id='alphabetList' class="hidden">   
-        <h2 class='tagged'> Pick correct letters to drag & drop for correct spelling</h2>
+        <h2 class='tagged'> Drag & drop a letter for correct spelling</h2>
         <div id="letterPile" > </div>
         
     </div>
 
     <div id='solution' class="hidden">
-        <h2 class='tagged'> Only Correct letter location will Stick </h2>
+    <!--    <h2 class='tagged'> Only letters in correct location will Stick </h2> -->
+        <div id='solution_title'> Only letters in correct location will Stick</div>
         <div id="letterSlots" > </div>
     </div>
     <div id='output'></div>
+    <div id='gameRules'></div>
     <script type="text/javascript" src="js/gendragdrop.js"></script>
 </body>
 </html>
