@@ -3,7 +3,7 @@ var correctLetters = 0;
 var wrongGuess = 0;
 var wordLength = 0;
 var lastClass = '';
-var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var cloneCount = 0;
 function genInit(fruit) {
 
@@ -31,6 +31,11 @@ function genInit(fruit) {
     // Hide The rest of Fruits Menu to avoid selecting a new fruit mid-game
     $('#fruitSpellCheck').hide();
     var degree = $('#difficulty').val();
+
+    if (wordLength > 7) {
+        // adjust box position to add space between this and rules description box
+        $('#letterSlots').css('left','30px');
+    }
 
     if ((degree == 1) || (degree == 2)) {
         var letters = fruit.split('');
@@ -70,31 +75,31 @@ function genInit(fruit) {
     }
     for ( var i=0; i<fruit.length; i++ ) {
 
-        dropins[i] = dropins[i].toUpperCase();
- 
+        // Generate the droppable slots to accept the correct letter in correct order: id will be used to identify the correct letter location
+        // Policy: use the upper case letters as ID's to be matched against letters dragged from the Pile of Letters
         $('<div>' + '</div>').data( 'letter', i ).attr( 'id', dropins[i] ).appendTo( '#letterSlots' ).droppable( {
-            accept: '#letterPile div',
-            hoverClass: 'hovered',
-            drop: dropFunction
+            accept: '#letterPile div', // only accepts letters originating from the letterPile collection
+            hoverClass: 'drop-hover', //class added to droppable when acceptable draggable is hovered over: colored yellow here
+            drop: dropFunction // callback function called when object is dropped 
         } );
     }
     var topi = 220;
     for ( var i=0; i<letters.length; i++ ) {
-        letters[i] = letters[i].toUpperCase();
         if (degree == 4) { // Advanced Case: with entire alphabet and each letter cloned (replicated) in place to allow for multiple drag&drop
-        
+            // Allow 13 letters per row with total of 2 rows, seperated by approxiamtely 10px
             var lefti = 10 + (i%13) * 75;
             if (i==13) {
                 topi = 340;
             }
                 
             for (var j = 0; j <cloneCount; j++) {
+                // up to cloneCount (5) copies of same letter of alphabet stacked on top of each other
+                // alternative to cloning which is not straightforward for draggable items (alternative to helper:clone which seems to clone after the element is dropped)
                 var newProp = {'position':'absolute','left':lefti+'px','top':topi+'px'};
                 $('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', letters[i]+j ).css(newProp).appendTo( '#letterPile' ).draggable( {
-                containment: '#content',
-                stack: '#letterPile div',
-                cursor: 'move',
-                revert: true
+                containment: '#wrapper', // allows dragging within the confine of the wrapper div
+                stack: '#letterPile div', // control the z-index and brings the dragged items to the front
+                revert: true // revert to original position if dragging is interrupted or policy violated (where applicable)
                 } );
             }
         }
@@ -107,10 +112,9 @@ function genInit(fruit) {
             }
         
             $('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', letters[i] ).css(cssProp).appendTo( '#letterPile' ).draggable( {
-            containment: '#content',
-            stack: '#letterPile div',
-            cursor: 'move',
-            revert: true
+            containment: '#wrapper', // allows dragging within the confine of the wrapper div
+            stack: '#letterPile div', // control the z-index and brings the dragged items to the front 
+            revert: true // revert to original position if dragging is interrupted or policy violated (where applicable)
             } );
         }
     }
@@ -118,7 +122,7 @@ function genInit(fruit) {
 function handleLetterDrop( event, ui ) {
 
     var slotId = $(this).attr('id');
-    var letterId = ui.draggable.attr('id').split('');
+    var letterId = $(ui.draggable).attr('id').split('');
     
     // If the letter was dropped to the correct slot,
     // change the letter color (by addClass('correct'), position it directly
@@ -127,11 +131,11 @@ function handleLetterDrop( event, ui ) {
     // again
 
     if ( slotId == letterId[0] ) {
-        ui.draggable.addClass( 'correct' );
-        ui.draggable.draggable( 'disable' );
+        $(ui.draggable).addClass( 'correct' );
+        $(ui.draggable).draggable( 'disable' );
         $(this).droppable( 'disable' );
-        ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-        ui.draggable.draggable( 'option', 'revert', false );
+        $(ui.draggable).position( { of: $(this), my: 'left top', at: 'left top' } );
+        $(ui.draggable).draggable( 'option', 'revert', false );
         correctLetters++;
         var left = wordLength-correctLetters;
         var string = "Check!! Still "+left +' Letters to go:)';
@@ -159,15 +163,15 @@ var top = 1000;
 function handleLetterDropAdvanced( event, ui ) {
 
     var slotId = $(this).attr('id');
-    var letterId = ui.draggable.attr('id').split('');
+    var letterId = $(ui.draggable).attr('id').split('');
     // z-index to make latest dragged element on top: by setting the z-index smaller
     $(ui.draggable).css('z-index',top--);
-    ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-    ui.draggable.draggable( 'option', 'revert', false );
+    $(ui.draggable).position( { of: $(this), my: 'left top', at: 'left top' } );
+    $(ui.draggable).draggable( 'option', 'revert', false );
     if (slotId == letterId[0]) {
         $(this).droppable( 'disable' );
-        ui.draggable.draggable( 'disable' );
-        ui.draggable.css('background','green');
+        $(ui.draggable).draggable( 'disable' );
+        $(ui.draggable).css('background','green');
         correctLetters++;
         var left = wordLength-correctLetters;
         var string = "Check:) " + correctLetters + "Correct. Still "+left +' Letters to go!<br>';
@@ -182,7 +186,7 @@ function handleLetterDropAdvanced( event, ui ) {
         }
     }
     else {
-        ui.draggable.css('background','red');
+        $(ui.draggable).css('background','red');
         wrongGuess++;
         var left = wordLength-correctLetters;
         var string = "Wrong:( "+wrongGuess+ " wrong guess";

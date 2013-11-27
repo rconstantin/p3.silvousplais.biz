@@ -13,7 +13,7 @@ h1, h2, h3, h4 {
     color: red;
     text-align: center;
 }
-p1 {
+p {
     color:red;
 }
 h2.tagged {
@@ -80,7 +80,17 @@ li {
     width: 800px;
     height: 120px;
 }
-
+footer {
+    background-color: #FF0000;
+    border: 2px solid grey;
+    bottom: 0;
+    height: 40px;
+    left: 0;
+    position: fixed;
+    width: 100%;   
+    color:yellow;
+    text-align: right;
+}
 #selectedFruit {
     margin: 30px auto 0 auto;
     opacity: 1;
@@ -109,37 +119,37 @@ li {
     border: 2px solid #333;;
 
 }
-#selectedFruit.apple {
+#selectedFruit.APPLE {
     background-image: url("../images/apple.jpg");
 }
-#selectedFruit.orange {
+#selectedFruit.ORANGE {
     background-image: url("../images/orange.jpg");
 }
-#selectedFruit.avocado {
+#selectedFruit.AVOCADO {
     background-image: url("../images/avocado.jpg");
 }
-#selectedFruit.lemon {
+#selectedFruit.LEMON {
     background-image: url("../images/lemon.jpg");
 }
-#selectedFruit.strawberry {
+#selectedFruit.STRAWBERRY {
     background-image: url("../images/strawberry.jpg");
 }
-#selectedFruit.grapes {
+#selectedFruit.GRAPES {
     background-image: url("../images/grapes.jpg");
 }
-#selectedFruit.banana {
+#selectedFruit.BANANA {
     background-image: url("../images/banana.jpg");
 }
-#selectedFruit.blueberry {
+#selectedFruit.BLUEBERRY {
     background-image: url("../images/blueberry.jpg");
 }
-#selectedFruit.raspberry {
+#selectedFruit.RASPBERRY {
     background-image: url("../images/raspberry.jpg");
 }
-#selectedFruit.pineapple {
+#selectedFruit.PINEAPPLE {
     background-image: url("../images/pineapple.jpg");
 }
-#selectedFruit.watermelon {
+#selectedFruit.WATERMELON {
     background-image: url("../images/watermelon.jpg");
 }
 /* Slots for final letters positions */
@@ -148,6 +158,7 @@ li {
     margin: 50px auto 0 auto;
     background: rgba(237, 255, 221, 0.9);
     opacity: 1;
+    position:relative;
 }
 .hidden {
     visibility: hidden;
@@ -188,8 +199,8 @@ li {
     text-align: center;
 }
 
-#letterSlots div.hovered {
-    background: green;
+#letterSlots div.drop-hover {
+    background: yellow;
 }
  
 #letterSlots div {
@@ -211,8 +222,6 @@ li {
 
 .ui-state-disabled {
     opacity: 1;
-    filter: Alpha(Opacity=100);
-    background-image: none;
 }
 
 /* rc: Individually colored letters - could not think of a smart way to generate this in js*/

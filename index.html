@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="css/features1.css" type="text/css">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/jquery.hoverscroll.js"></script>
-    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <!--plugin from http://rascarlito.free.fr/hoverscroll to enable pretty scrolling -->
+    <script type="text/javascript" src="js/jquery.hoverscroll.js"></script> 
+    <!--plugin from touchpunch.furf.com to enable use on ipad & iphone -->
+    <script src="js/jquery.ui.touch-punch.min.js"></script>  
 </head>
 <body>
 <div id='wrapper'> 
     <div id="degreeOfDifficulty"> 
-        <p1>Select Degree of Difficulty </p1> 
+        <p>Select Degree of Difficulty </p> 
         <select id='difficulty'>
             <option value='1'>Beginner</option>
             <option value='2'>Moderate</option>
@@ -25,17 +27,17 @@
     <div id="fruitSpellCheck">
             <h2>click a fruit to Spell</h2>
         <ul id="my-list">
-            <li><img class='fruits' id='apple' src="images/apple.jpg" /></li>
-            <li><img class='fruits' id='avocado' src="images/avocado.jpg" /></li>
-            <li><img class='fruits' id='orange' src="images/orange.jpg" /></li>
-            <li><img class='fruits' id='banana' src="images/banana.jpg" /></li>
-            <li><img class='fruits' id='blueberry' src="images/blueberry.jpg" /></li>
-            <li><img class='fruits' id='raspberry' src="images/raspberry.jpg" /></li>
-            <li><img class='fruits' id='grapes' src="images/grapes.jpg" /></li>
-            <li><img class='fruits' id='pineapple' src="images/pineapple.jpg" /></li>
-            <li><img class='fruits' id='strawberry' src="images/strawberry.jpg" /></li>
-            <li><img class='fruits' id='watermelon' src="images/watermelon.jpg" /></li>
-            <li><img class='fruits' id='lemon' src="images/lemon.jpg" /></li>
+            <li><img class='fruits' id='APPLE' src='images/apple.jpg' alt='apple'></li>
+            <li><img class='fruits' id='AVOCADO' src='images/avocado.jpg' alt='avocado'></li>
+            <li><img class='fruits' id='ORANGE' src='images/orange.jpg' alt='orange'></li>
+            <li><img class='fruits' id='BANANA' src='images/banana.jpg' alt='banana'></li>
+            <li><img class='fruits' id='BLUEBERRY' src='images/blueberry.jpg' alt='blueberry'></li>
+            <li><img class='fruits' id='RASPBERRY' src='images/raspberry.jpg' alt='raspberry'></li>
+            <li><img class='fruits' id='GRAPES' src='images/grapes.jpg' alt='grapes'></li>
+            <li><img class='fruits' id='PINEAPPLE' src='images/pineapple.jpg' alt='pineapple'></li>
+            <li><img class='fruits' id='STRAWBERRY' src='images/strawberry.jpg' alt='strawberry'></li>
+            <li><img class='fruits' id='WATERMELON' src='images/watermelon.jpg' alt='watermelon'></li>
+            <li><img class='fruits' id='LEMON' src='images/lemon.jpg' alt='lemon'></li>
         </ul>
     </div>
     <div id='selectedFruit' class="hidden"> </div>
@@ -47,12 +49,13 @@
     </div>
 
     <div id='solution' class="hidden">
-    <!--    <h2 class='tagged'> Only letters in correct location will Stick </h2> -->
         <div id='solution_title'> Only letters in correct location will Stick</div>
         <div id="letterSlots" > </div>
     </div>
     <div id='output'></div>
     <div id='gameRules'></div>
+    <footer> Robbie Constantin - Fall 2013: Project 3 for CSCI E-15 </footer>
     <script type="text/javascript" src="js/gendragdrop.js"></script>
+</div>    
 </body>
 </html>
