@@ -170,8 +170,16 @@ function handleLetterDropAdvanced( event, ui ) {
         ui.draggable.css('background','green');
         correctLetters++;
         var left = wordLength-correctLetters;
-        var string = "Check:) Still "+left +' Letters to go:)<br>';
-        $('#output').html(string);
+        var string = "Check:) " + correctLetters + "Correct. Still "+left +' Letters to go!<br>';
+        $('#output').css({'color':'green'}).html(string);
+        if (wrongGuess > 0) {
+            var string = "<font color='red'>" + wrongGuess+ " wrong guess";
+            if (wrongGuess > 1) {
+                string = string + "ses";
+            }
+            string = string +  "</font>";
+            $('#output').append(string);
+        }
     }
     else {
         ui.draggable.css('background','red');
@@ -181,21 +189,23 @@ function handleLetterDropAdvanced( event, ui ) {
         if (wrongGuess > 1) {
             string = string + "ses";
         }
-        string = string+"... "+left+' Letters to go:)<br>';
-        $('#output').html(string);
+        string = string+"... "
+        $('#output').css({'color':'red'}).html(string);
+        string = '';
+        if (correctLetters >0) {
+            string = correctLetters + ' Correct:) <br>';
+        }
+        string = "<font color='green'>" + string + left +' Letters to go!<br></font>';
+        $('#output').append(string);
+
     }
     if ( correctLetters == wordLength ) {
-        /*
-        alert("Good Job!! Click Ok to refresh screen.");
-        $('#selectedFruit').removeClass(lastClass);
-        $('#fruitSpellCheck').show();
-        genInit('');
-        */
+        
         $('#output').html('');
-        $('#output').append('Good Job: You win! :)<br>');   
+        $('#output').append("<font color='orange'> Good Job: You win! :)<br></font>");   
 
         
-        $('#output').append('Starting a new game in 5 seconds...<br>');   
+        $('#output').append("<font color='orange'> Starting a new game in 5 seconds...</font>");   
         
         // Let them see the results for 3 seconds, then just refresh this page to start a new game
         setTimeout(function(){
