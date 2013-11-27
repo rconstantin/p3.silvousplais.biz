@@ -43,19 +43,28 @@ li {
     text-align: center;
 }
 #output {
+    border: 2px solid pink;
+    border-radius: 10px;
+    box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    background: white;
     margin: 10px 70px;
     text-align: center;
     color:orange;
     position: absolute;
-    top:425px;
+    top:25px;
     left:-330px;
 }
 #gameRules {
+
+    border: 2px solid pink;
+    border-radius: 10px;
+    box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    background: white;
     margin: 10px 70px;
     text-align: left;
     color:red;
     position: absolute;
-    top:525px;
+    top:450px;
     left:-330px;
 }
 #solution_title {
@@ -193,7 +202,6 @@ li {
     font-size: 50px;
     text-shadow: 0 0 3px #000;
     cursor: pointer;
-/*  position:absolute; */ 
 }
 
 #letterPile div.ui-draggable-dragging {

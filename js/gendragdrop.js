@@ -81,7 +81,7 @@ function genInit(fruit) {
     var topi = 220;
     for ( var i=0; i<letters.length; i++ ) {
         letters[i] = letters[i].toUpperCase();
-        if (degree == 4) {
+        if (degree == 4) { // Advanced Case: with entire alphabet and each letter cloned (replicated) in place to allow for multiple drag&drop
         
             var lefti = 10 + (i%13) * 75;
             if (i==13) {
@@ -89,7 +89,8 @@ function genInit(fruit) {
             }
                 
             for (var j = 0; j <cloneCount; j++) {
-                $('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', letters[i]+j ).css('position','absolute').css('left', lefti+'px').css('top', topi+'px').appendTo( '#letterPile' ).draggable( {
+                var newProp = {'position':'absolute','left':lefti+'px','top':topi+'px'};
+                $('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', letters[i]+j ).css(newProp).appendTo( '#letterPile' ).draggable( {
                 containment: '#content',
                 stack: '#letterPile div',
                 cursor: 'move',
@@ -97,16 +98,15 @@ function genInit(fruit) {
                 } );
             }
         }
-        else if (degree == 2) {
-            $('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', letters[i] ).css('position','absolute').appendTo( '#letterPile' ).draggable( {
-            containment: '#content',
-            stack: '#letterPile div',
-            cursor: 'move',
-            revert: true
-            } );
-        }
         else {
-            $('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', letters[i] ).appendTo( '#letterPile' ).draggable( {
+            if (degree == 2) { // Moderate Case
+                var cssProp = {'position':'absolute'};
+            }
+            else { // Beginner Case OR Challenging Case
+                var cssProp = {'position':'relative'};
+            }
+        
+            $('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', letters[i] ).css(cssProp).appendTo( '#letterPile' ).draggable( {
             containment: '#content',
             stack: '#letterPile div',
             cursor: 'move',
@@ -141,12 +141,6 @@ function handleLetterDrop( event, ui ) {
     // If all the letters have been placed correctly then display a message
 
     if ( correctLetters == wordLength ) {
-        /*
-        alert("Good Job!! Click Ok to refresh screen.");
-        $('#selectedFruit').removeClass(lastClass);
-        $('#fruitSpellCheck').show();
-        genInit('');
-        */
         $('#output').html('');
         $('#output').append('Good Job: You win! :)<br>');   
 
@@ -246,16 +240,17 @@ function displayGameRules() {
 
     $('#gameRules').html('');
     if (degree == 1) {
-        $('#gameRules').html('Beginner Spelling Rules:<br> Fruit Letters are randomly shuffled in Pile. <br> Any letters can be dragged and dropped <br>but will only stick if in the correct position <br>');
+        $('#gameRules').css('top','450px').html('Beginner Spelling Rules:<br> Fruit Letters are randomly shuffled in Pile. <br> Any letters can be dragged and dropped <br>but will only stick if in the correct position <br>');
     }
     else if (degree == 2) {
-        $('#gameRules').html('Moderate (not as easy) Spelling Rules:<br> Letters are randomly stacked in Pile. <br> Top Letter will only be succesfully dropped <br> in correct position <br>');
+        $('#gameRules').css('top','450px').html('Moderate (not as easy) Spelling Rules:<br> Letters are randomly stacked in Pile. <br> Top Letter will only be succesfully dropped <br> in correct position <br>');
     }
     else if (degree == 3) {
-        $('#gameRules').html('Challenging (more difficult) Spelling Rules:<br> Fruit Letters are randomly mixed with other letters (Total of 20). <br> Only letters from chosen fruit will stick <br> to correct position<br>');
+
+        $('#gameRules').css('top','550px').html('Challenging (more difficult) Spelling Rules:<br> Fruit Letters are randomly mixed with other<br> letters (Total of 20). <br> Only letters from chosen fruit will stick <br> to correct position.');
     }
     else {
-        $('#gameRules').html('Advanced (most difficult) Spelling Rules:<br> Entire Alphabet is listed. <br> Any letter can be dragged and dropped <br> Incorrectly dropped letters will have red background <br> Correct picks in correct position will force green background<br> Game will end when all correct letters are in right slot.');
+        $('#gameRules').css('top','550px').html('Advanced (most difficult) Spelling Rules:<br> Entire Alphabet is listed. <br> Any letter can be dragged and dropped. <br> Incorrect picks will have red background. <br> Correct picks will have green background.<br> Game ends when word is correctly spelled.');
     }
 }
 
