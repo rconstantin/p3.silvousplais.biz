@@ -32,11 +32,6 @@ function genInit(fruit) {
     $('#fruitSpellCheck').hide();
     var degree = $('#difficulty').val();
 
-    if (wordLength > 7) {
-        // adjust box position to add space between this and rules description box
-        $('#letterSlots').css('left','30px');
-    }
-
     if ((degree == 1) || (degree == 2)) {
         var letters = fruit.split('');
         letters.sort( function() { return Math.random() - .5 });
@@ -254,17 +249,17 @@ function displayGameRules() {
 
     $('#gameRules').html('');
     if (degree == 1) {
-        $('#gameRules').css('top','450px').html('Beginner Spelling Rules:<br> Fruit Letters are randomly shuffled in Pile. <br> Any letters can be dragged and dropped <br>but will only stick if in the correct position <br>');
+        $('#gameRules').html('Beginner Spelling Rules:<br> Fruit Letters are randomly shuffled in Pile. <br> Any letters can be dragged and dropped <br>but will only stick if in the correct position <br>');
     }
     else if (degree == 2) {
-        $('#gameRules').css('top','450px').html('Moderate (not as easy) Spelling Rules:<br> Letters are randomly stacked in Pile. <br> Top Letter will only be succesfully dropped <br> in correct position <br>');
+        $('#gameRules').html('Moderate (not as easy) Spelling Rules:<br> Letters are randomly stacked in Pile. <br> Top Letter will only be succesfully dropped <br> in correct position <br>');
     }
     else if (degree == 3) {
 
-        $('#gameRules').css('top','550px').html('Challenging (more difficult) Spelling Rules:<br> Fruit Letters are randomly mixed with other<br> letters (Total of 20). <br> Only letters from chosen fruit will stick <br> to correct position.');
+        $('#gameRules').html('Challenging (more difficult) Spelling Rules:<br> Fruit Letters are randomly mixed with <br> other letters (Total of 20). <br> Only letters from chosen fruit will stick <br> to correct position.');
     }
     else {
-        $('#gameRules').css('top','550px').html('Advanced (most difficult) Spelling Rules:<br> Entire Alphabet is listed. <br> Any letter can be dragged and dropped. <br> Incorrect picks will have red background. <br> Correct picks will have green background.<br> Game ends when word is correctly spelled.');
+        $('#gameRules').html('Advanced (most difficult) Spelling Rules:<br> Entire Alphabet is listed. <br> Any letter can be dragged and dropped. <br> Incorrect picks will have red background. <br> Correct picks will have green background.<br> Game ends when word is correctly spelled.');
     }
 }
 
