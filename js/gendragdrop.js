@@ -1,4 +1,5 @@
 // jquery functions for drag and drop letters for spelling quiz
+
 var correctLetters = 0;
 var wrongGuess = 0;
 var wordLength = 0;
@@ -125,7 +126,7 @@ function handleLetterDrop( event, ui ) {
     // on top of the slot, and do not allow it to be dragged. 
     // Also, do not allow this slot to be dropped into by another letter
     // again
-    $('#output').css('background','white');
+    // $('#output').css('background','white');
 
     if ( slotId == letterId[0] ) {
         $(ui.draggable).addClass( 'correct' ); // add color specific background for effect
@@ -137,13 +138,13 @@ function handleLetterDrop( event, ui ) {
         $(ui.draggable).position( { of: $(this), my: 'center', at: 'center' , collision: 'fit'} );
         $(ui.draggable).draggable( 'option', 'revert', false ); //disable the revert option
         correctLetters++; // increment the number of correctly spelled letters
-        var left = wordLength-correctLetters;
-        var string = "Check!! Still "+left +' Letters to go:)';
-        $('#output').html(string);
+//        var left = wordLength-correctLetters;
+//        var string = "Check!! Still "+left +' Letters to go:)';
+//        $('#output').html(string);
     }
    
     // If all the letters have been placed correctly then display a message
-
+/*
     if ( correctLetters == wordLength ) {
         $('#output').html('');
         $('#output').append('Good Job: You win! :)<br>');   
@@ -157,7 +158,8 @@ function handleLetterDrop( event, ui ) {
         },5000);
  
     }
-
+*/
+    displayResults(1);
 }
 var top = 1000;
 function handleLetterDropAdvanced( event, ui ) {
@@ -170,15 +172,19 @@ function handleLetterDropAdvanced( event, ui ) {
     $(ui.draggable).position( { of: $(this), my: 'left top', at: 'left top' } );
     // disable the revert option
     $(ui.draggable).draggable( 'option', 'revert', false );
+    var guess = 0;
     if (slotId == letterId[0]) {
         // Policy to simplify things: correct spell will turn background green and disable further drag/drop on this letter/location
         $(this).droppable( 'disable' ); 
         $(ui.draggable).draggable( 'disable' );
         $(ui.draggable).css('background','green');
         correctLetters++;
+        guess = 1;
+        /*****
         var left = wordLength-correctLetters;
+        var plural = (left == 1) ? ' letter' : ' letters';
         // display output stats
-        var string = "Check:) " + correctLetters + "Correct. Still "+left +' Letters to go!<br>';
+        var string = "Check:) " + correctLetters + "Correct. Still "+left +plural+' to go!<br>';
         $('#output').css({'color':'green'}).html(string);
         if (wrongGuess > 0) {
             var string = "<font color='red'>" + wrongGuess+ " wrong guess";
@@ -188,25 +194,30 @@ function handleLetterDropAdvanced( event, ui ) {
             string = string +  "</font>";
             $('#output').append(string);
         }
+        **/
     }
     else {
         // If wrong letter is dropped: set background to red and increment wrong count.
         // unlike the above case, both draggable and droppable are still enabled so wrong letter can be moved around
         // and/or other letters can be dragged and drop in this location
         $(ui.draggable).css('background','red');
+
         wrongGuess++;
+    }
+      
+        /****
         var left = wordLength-correctLetters;
         var string = "Wrong:( "+wrongGuess+ " wrong guess";
         if (wrongGuess > 1) {
             string = string + "ses";
         }
         string = string+"... "
-        $('#output').css({'color':'red'}).html(string);
         string = '';
         if (correctLetters >0) {
             string = correctLetters + ' Correct:) <br>';
         }
-        string = "<font color='green'>" + string + left +' Letters to go!<br></font>';
+        var plural = (left == 1) ? ' letter' : ' letters';
+        string = "<font color='green'>" + string + left + plural + ' to go!<br></font>';
         $('#output').append(string);
 
     }
@@ -223,6 +234,8 @@ function handleLetterDropAdvanced( event, ui ) {
             location.reload();
         },5000);
     }
+    */
+    displayResults(guess);
 }
 
 
@@ -273,4 +286,48 @@ function displayGameRules() {
         $('#gameRules').html('Advanced (most difficult) Spelling Rules:<br> Entire Alphabet is listed. <br> Any letter can be dragged and dropped. <br> Incorrect picks will have red background. <br> Correct picks will have green background.<br> Game ends when word is correctly spelled.');
     }
 }
+function displayResults (guess) {
+    $('#output').css('background','white');
+    $('#output').css({'color':'green'}).html(string);
+    $('#output').html('');
+    if (wordLength != correctLetters) {
 
+        var left = wordLength-correctLetters;
+        var plural = (left == 1) ? ' letter' : ' letters';
+        // display output stats
+        var string = '';
+        if (guess == 1) {
+            string = "Check:) ";
+        }
+        else {
+            string = "<font color='red'>Wrong:( </font>";
+        }
+
+        string = (correctLetters > 0) ? string + correctLetters + "Correct. ": "";
+        string = string + "Still "+left +plural+" to go!<br>";
+        $('#output').html(string);
+        
+        if (wrongGuess > 0) {
+            var string = "<font color='red'>" + wrongGuess+ " wrong guess";
+            if (wrongGuess > 1) {
+                string = string + "ses";
+            }
+            string = string +  "</font>";
+            $('#output').append(string);
+        }
+        
+    }
+    else {
+        // end of game: success and reload!!
+        $('#output').html('');
+        $('#output').append("<font color='orange'> Good Job: You win! :)<br></font>");   
+
+        
+        $('#output').append("<font color='orange'> Starting a new game in 5 seconds...</font>");   
+        
+        // Let them see the results for 3 seconds, then just refresh this page to start a new game
+        setTimeout(function(){
+            location.reload();
+        },5000);
+    }
+}
