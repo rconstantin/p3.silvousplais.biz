@@ -126,7 +126,6 @@ function handleLetterDrop( event, ui ) {
     // on top of the slot, and do not allow it to be dragged. 
     // Also, do not allow this slot to be dropped into by another letter
     // again
-    // $('#output').css('background','white');
 
     if ( slotId == letterId[0] ) {
         $(ui.draggable).addClass( 'correct' ); // add color specific background for effect
@@ -138,27 +137,8 @@ function handleLetterDrop( event, ui ) {
         $(ui.draggable).position( { of: $(this), my: 'center', at: 'center' , collision: 'fit'} );
         $(ui.draggable).draggable( 'option', 'revert', false ); //disable the revert option
         correctLetters++; // increment the number of correctly spelled letters
-//        var left = wordLength-correctLetters;
-//        var string = "Check!! Still "+left +' Letters to go:)';
-//        $('#output').html(string);
     }
-   
-    // If all the letters have been placed correctly then display a message
-/*
-    if ( correctLetters == wordLength ) {
-        $('#output').html('');
-        $('#output').append('Good Job: You win! :)<br>');   
 
-        
-        $('#output').append('Starting a new game in 5 seconds...<br>');   
-        
-        // Let them see the results for 3 seconds, then just refresh this page to start a new game
-        setTimeout(function(){
-            location.reload();
-        },5000);
- 
-    }
-*/
     displayResults(1);
 }
 var top = 1000;
@@ -180,21 +160,6 @@ function handleLetterDropAdvanced( event, ui ) {
         $(ui.draggable).css('background','green');
         correctLetters++;
         guess = 1;
-        /*****
-        var left = wordLength-correctLetters;
-        var plural = (left == 1) ? ' letter' : ' letters';
-        // display output stats
-        var string = "Check:) " + correctLetters + "Correct. Still "+left +plural+' to go!<br>';
-        $('#output').css({'color':'green'}).html(string);
-        if (wrongGuess > 0) {
-            var string = "<font color='red'>" + wrongGuess+ " wrong guess";
-            if (wrongGuess > 1) {
-                string = string + "ses";
-            }
-            string = string +  "</font>";
-            $('#output').append(string);
-        }
-        **/
     }
     else {
         // If wrong letter is dropped: set background to red and increment wrong count.
@@ -204,37 +169,7 @@ function handleLetterDropAdvanced( event, ui ) {
 
         wrongGuess++;
     }
-      
-        /****
-        var left = wordLength-correctLetters;
-        var string = "Wrong:( "+wrongGuess+ " wrong guess";
-        if (wrongGuess > 1) {
-            string = string + "ses";
-        }
-        string = string+"... "
-        string = '';
-        if (correctLetters >0) {
-            string = correctLetters + ' Correct:) <br>';
-        }
-        var plural = (left == 1) ? ' letter' : ' letters';
-        string = "<font color='green'>" + string + left + plural + ' to go!<br></font>';
-        $('#output').append(string);
-
-    }
-    if ( correctLetters == wordLength ) {
-        // end of game: success and reload!!
-        $('#output').html('');
-        $('#output').append("<font color='orange'> Good Job: You win! :)<br></font>");   
-
-        
-        $('#output').append("<font color='orange'> Starting a new game in 5 seconds...</font>");   
-        
-        // Let them see the results for 3 seconds, then just refresh this page to start a new game
-        setTimeout(function(){
-            location.reload();
-        },5000);
-    }
-    */
+ 
     displayResults(guess);
 }
 
