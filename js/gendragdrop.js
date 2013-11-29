@@ -22,7 +22,8 @@ function genInit(fruit) {
         $('#alphabetList').addClass('hidden');
         return;
     } 
-
+    // Show the Rules for specific level
+    displayGameRules();
     $('#selectedFruit').addClass(fruit);    
     lastClass = fruit;
 
@@ -124,14 +125,18 @@ function handleLetterDrop( event, ui ) {
     // on top of the slot, and do not allow it to be dragged. 
     // Also, do not allow this slot to be dropped into by another letter
     // again
+    $('#output').css('background','white');
 
     if ( slotId == letterId[0] ) {
-        $(ui.draggable).addClass( 'correct' );
-        $(ui.draggable).draggable( 'disable' );
-        $(this).droppable( 'disable' );
-        $(ui.draggable).position( { of: $(this), my: 'left top', at: 'left top' } );
-        $(ui.draggable).draggable( 'option', 'revert', false );
-        correctLetters++;
+        $(ui.draggable).addClass( 'correct' ); // add color specific background for effect
+        $(ui.draggable).draggable( 'disable' ); // do not allow element to be dragged after dropping in correct position
+        $(this).droppable( 'disable' ); // do not allow other letters to be dropped on top of this one
+        // Disclaimer: jquery-ui position seems to have a bug in safari when 'Zoom Out' is used to reduce size of page content
+        // it seems the calculation of left & top of ui-draggable element gets confused.
+        // No problem observed when using chrome of firefox. Note: Safari is ok if only text is zoomed out
+        $(ui.draggable).position( { of: $(this), my: 'center', at: 'center' , collision: 'fit'} );
+        $(ui.draggable).draggable( 'option', 'revert', false ); //disable the revert option
+        correctLetters++; // increment the number of correctly spelled letters
         var left = wordLength-correctLetters;
         var string = "Check!! Still "+left +' Letters to go:)';
         $('#output').html(string);
@@ -161,14 +166,18 @@ function handleLetterDropAdvanced( event, ui ) {
     var letterId = $(ui.draggable).attr('id').split('');
     // z-index to make latest dragged element on top: by setting the z-index smaller
     $(ui.draggable).css('z-index',top--);
+    // allow any letter to be dropped in any location
     $(ui.draggable).position( { of: $(this), my: 'left top', at: 'left top' } );
+    // disable the revert option
     $(ui.draggable).draggable( 'option', 'revert', false );
     if (slotId == letterId[0]) {
-        $(this).droppable( 'disable' );
+        // Policy to simplify things: correct spell will turn background green and disable further drag/drop on this letter/location
+        $(this).droppable( 'disable' ); 
         $(ui.draggable).draggable( 'disable' );
         $(ui.draggable).css('background','green');
         correctLetters++;
         var left = wordLength-correctLetters;
+        // display output stats
         var string = "Check:) " + correctLetters + "Correct. Still "+left +' Letters to go!<br>';
         $('#output').css({'color':'green'}).html(string);
         if (wrongGuess > 0) {
@@ -181,6 +190,9 @@ function handleLetterDropAdvanced( event, ui ) {
         }
     }
     else {
+        // If wrong letter is dropped: set background to red and increment wrong count.
+        // unlike the above case, both draggable and droppable are still enabled so wrong letter can be moved around
+        // and/or other letters can be dragged and drop in this location
         $(ui.draggable).css('background','red');
         wrongGuess++;
         var left = wordLength-correctLetters;
@@ -199,7 +211,7 @@ function handleLetterDropAdvanced( event, ui ) {
 
     }
     if ( correctLetters == wordLength ) {
-        
+        // end of game: success and reload!!
         $('#output').html('');
         $('#output').append("<font color='orange'> Good Job: You win! :)<br></font>");   
 
@@ -216,14 +228,12 @@ function handleLetterDropAdvanced( event, ui ) {
 
 $(".fruits").on('click', function() {
     var fruit = $(this).attr('id');
-    displayGameRules();
     genInit(fruit);
  
 });
 $('input,select').change( function() {
 
     $('#output').html('');
-    displayGameRules();
     genInit(lastClass);
  
 });
@@ -245,6 +255,7 @@ function generateRandomList (fruit) {
 
 function displayGameRules() {
 
+    $('#gameRules').css('background','white');
     var degree = $('#difficulty').val();
 
     $('#gameRules').html('');

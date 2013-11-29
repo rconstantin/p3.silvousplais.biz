@@ -44,10 +44,8 @@ li {
     text-align: center;
 }
 #output {
-    border: 2px solid pink;
     border-radius: 10px;
     box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
-    background: white;
     margin: 10px 70px;
     text-align: center;
     color:orange;
@@ -57,16 +55,14 @@ li {
 }
 #gameRules {
 
-    border: 2px solid pink;
     border-radius: 10px;
     box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
-    background: white;
     margin: 10px 70px;
     text-align: left;
     color:red;
     position: absolute;
     top:0px;
-    left:-330px;
+    left:-120px;
 }
 #solution_title {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -108,7 +104,7 @@ footer {
     width: 100px;
     height: 30px;
     top:0px;
-    left:960px;
+    left:910px;
     position: absolute;
 }
 .fruits {
