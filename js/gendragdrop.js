@@ -1,5 +1,5 @@
 // jquery functions for drag and drop letters for spelling quiz
-
+// inspired by a game found in http://www.pcrgb.com/dragdrop.html where numbers 1 to 10 are dragged and dropped
 var correctLetters = 0;
 var wrongGuess = 0;
 var wordLength = 0;
@@ -10,7 +10,8 @@ function genInit(fruit) {
 
     correctLetters= 0;
     wordLength = fruit.length;
-    
+    // removeClass(lastClass) is needed here in case the user decides mid-game to change the degree of difficulty
+    // This is also usefull if user is allowed to change the fruit object to spell prior to end of current game (currently not allowed)
     $('#selectedFruit').removeClass(lastClass);
 
     if (fruit != '') {
@@ -23,7 +24,7 @@ function genInit(fruit) {
         $('#alphabetList').addClass('hidden');
         return;
     } 
-    // Show the Rules for specific level
+    // Show the Rules for specific level/degree of difficulty
     displayGameRules();
     $('#selectedFruit').addClass(fruit);    
     lastClass = fruit;
@@ -33,21 +34,22 @@ function genInit(fruit) {
     // Hide The rest of Fruits Menu to avoid selecting a new fruit mid-game
     $('#fruitSpellCheck').hide();
     var degree = $('#difficulty').val();
-
+    // For degree 1 & 2 (beginner & Moderate): the list of letters consists of the fruit letters with position randomized
     if ((degree == 1) || (degree == 2)) {
         var letters = fruit.split('');
         letters.sort( function() { return Math.random() - .5 });
     }
+    // For degree 3 (Challenging), additional letters are added to the mix to make it harder
     else if (degree == 3) {
         var letters = generateRandomList(fruit);
         letters.sort( function() { return Math.random() - .5 });
     }
     else {
-        // entire alphabet
+        // entire alphabet is used irrespective of the fruit to spell
         var letters = alphabet;
         cloneCount = 5;
     }
-    
+    // Adjust the width and height of blocks depending on degree of difficulty: more for esthetics
     var slotWidth = ((fruit.length*90)-30)+'px';
 
     var pileWidth = 100+'px';
@@ -67,6 +69,8 @@ function genInit(fruit) {
     var dropins = fruit.split('');
     var dropFunction = handleLetterDrop;
     if (degree == 4) {
+        // Decided to use a separate function for the advanced case for easier readability of code at the expense of the DRY concept
+        // Tradeoff between DRY and complexity of logic
         dropFunction = handleLetterDropAdvanced;
         $('#solution_title').html('Any Letter can be dropped to any location');
     }
@@ -137,9 +141,10 @@ function handleLetterDrop( event, ui ) {
         $(ui.draggable).position( { of: $(this), my: 'center', at: 'center' , collision: 'fit'} );
         $(ui.draggable).draggable( 'option', 'revert', false ); //disable the revert option
         correctLetters++; // increment the number of correctly spelled letters
+        // Display results only if there are changes (i.e a good guess)
+        displayResults(1);
     }
 
-    displayResults(1);
 }
 var top = 1000;
 function handleLetterDropAdvanced( event, ui ) {
@@ -149,12 +154,12 @@ function handleLetterDropAdvanced( event, ui ) {
     // z-index to make latest dragged element on top: by setting the z-index smaller
     $(ui.draggable).css('z-index',top--);
     // allow any letter to be dropped in any location
-    $(ui.draggable).position( { of: $(this), my: 'left top', at: 'left top' } );
+    $(ui.draggable).position( { of: $(this), my: 'center', at: 'center' } );
     // disable the revert option
     $(ui.draggable).draggable( 'option', 'revert', false );
     var guess = 0;
     if (slotId == letterId[0]) {
-        // Policy to simplify things: correct spell will turn background green and disable further drag/drop on this letter/location
+        // Policy to simplify things on our young user: correct spell will turn background green and disable further drag/drop on this letter/location
         $(this).droppable( 'disable' ); 
         $(ui.draggable).draggable( 'disable' );
         $(ui.draggable).css('background','green');
