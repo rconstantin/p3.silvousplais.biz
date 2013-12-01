@@ -243,7 +243,7 @@ function displayResults (guess) {
             string = "<font color='red'>Wrong:( </font>";
         }
 
-        string = (correctLetters > 0) ? string + correctLetters + "Correct. ": "";
+        string = (correctLetters > 0) ? string + correctLetters + "Correct. ": string;
         string = string + "Still "+left +plural+" to go!<br>";
         $('#output').html(string);
         
